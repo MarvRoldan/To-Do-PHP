@@ -28,11 +28,11 @@ if (isset($_POST) && !empty($_POST)) {
         <h2>Active To-Dos</h2>
         <ul>
             <?php foreach ($_SESSION['todos'] as $task) : ?>
-                <ul>
+                <li>
                     <input type="checkbox">
                         <?php echo $task; ?>
                     </input>
-                </ul>
+                </li>
             <?php endforeach; ?>
         </ul>
         <h2>Completed To-Dos</h2>
