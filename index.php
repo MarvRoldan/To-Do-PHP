@@ -1,9 +1,13 @@
 <?php
     session_start();
-    
+    if (!isset($_SESSION['todos']))
+    {
+        $_SESSION['todos'] = array();
+    }
+
     if (isset($_POST) && !empty($_POST))
     {
-        $submittedTask = $_POST['newtask'];
+        array_push($_SESSION['todos'], $_POST['task']);
     }
 
 ?><!DOCTYPE html>
@@ -16,9 +20,9 @@
 <body>
     <h2>Add a To-Do</h2>
     <form action="./index.php" method="POST">
-        <label for="newtask">
+        <label for="task">
             Enter a new task:
-            <input type="text" name="newtask" id="newtask">
+            <input type="text" name="task" id="task">
         </label>
         <input type="submit" value="Add To List">
         <input type="reset" value="Reset">
@@ -26,6 +30,11 @@
     <h2>Active To-Dos</h2>
     <h2>Completed To-Dos</h2>
     <h2>Debugging</h2>
+    <strong>SESSION</strong>
+    <pre>
+        <?php var_dump($_SESSION); ?>
+    </pre>
+    <strong>POST</strong>
     <pre>
         <?php var_dump($_POST); ?>
     </pre>
