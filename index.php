@@ -1,15 +1,12 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['todos']))
-    {
-        $_SESSION['todos'] = array();
-    }
+session_start();
+if (!isset($_SESSION['todos'])) {
+    $_SESSION['todos'] = array();
+}
 
-    if (isset($_POST) && !empty($_POST))
-    {
-        array_push($_SESSION['todos'], $_POST['task']);
-    }
-
+if (isset($_POST) && !empty($_POST)) {
+    array_push($_SESSION['todos'], $_POST['task']);
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +24,19 @@
         <input type="submit" value="Add To List">
         <input type="reset" value="Reset">
     </form>
-    <h2>Active To-Dos</h2>
-    <h2>Completed To-Dos</h2>
+    <?php if (!empty($_SESSION['todos'])) : ?>
+        <h2>Active To-Dos</h2>
+        <ul>
+            <?php foreach ($_SESSION['todos'] as $task) : ?>
+                <ul>
+                    <input type="checkbox">
+                        <?php echo $task; ?>
+                    </input>
+                </ul>
+            <?php endforeach; ?>
+        </ul>
+        <h2>Completed To-Dos</h2>
+    <?php endif; ?>
     <h2>Debugging</h2>
     <strong>SESSION</strong>
     <pre>
