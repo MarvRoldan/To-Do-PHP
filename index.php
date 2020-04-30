@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    
+    if (isset($_POST) && !empty($_POST))
+    {
+        $submittedTask = $_POST['newtask'];
+    }
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,5 +26,8 @@
     <h2>Active To-Dos</h2>
     <h2>Completed To-Dos</h2>
     <h2>Debugging</h2>
+    <pre>
+        <?php var_dump($_POST); ?>
+    </pre>
 </body>
 </html>
